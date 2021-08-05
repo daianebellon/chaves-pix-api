@@ -3,6 +3,7 @@ package com.daiane.pix.gateway.database.entity.conta;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "contas")
@@ -12,10 +13,10 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conta")
-    private Long id;
+    private Integer id;
 
     @Column(name = "nr_conta", nullable = false)
-    private Long numeroConta;
+    private BigInteger numeroConta;
 
     @Column(name = "nr_agencia", nullable = false)
     private Integer numeroAgencia;
@@ -24,6 +25,6 @@ public class Conta {
     private String documentoTitular;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tp_pessoa", nullable = false)
+    @Column(name = "tp_pessoa", nullable = false, columnDefinition = "char")
     private TipoPessoa tipoPessoa;
 }

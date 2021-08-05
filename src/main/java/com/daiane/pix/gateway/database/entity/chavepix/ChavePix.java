@@ -4,7 +4,7 @@ import com.daiane.pix.gateway.database.entity.conta.Conta;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "chave_pix")
@@ -14,7 +14,7 @@ public class ChavePix {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chave")
-    private Long idChave;
+    private Integer idChave;
 
     @ManyToOne
     @JoinColumn(name = "id_conta", nullable = false)
@@ -28,6 +28,6 @@ public class ChavePix {
     private TipoChave tipoChave;
 
     @Column(name = "dt_cadastro", nullable = false)
-    private LocalDate dataCadastro = LocalDate.now();
+    private LocalDateTime dataCadastro;
 
 }
