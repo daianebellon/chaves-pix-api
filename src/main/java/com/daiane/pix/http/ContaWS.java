@@ -20,10 +20,8 @@ public class ContaWS {
         return cadastrarConta.executar(contaInput);
     }
 
-    @DeleteMapping("excluir/{id}")
-    public String excluir(@PathVariable Integer id) {
-        return excluirConta.executar(id);
+    @DeleteMapping("/{id}")
+    public void excluir(@PathVariable Integer id) {
+        excluirConta.executar(id);
     }
-
-
 }

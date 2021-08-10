@@ -1,6 +1,8 @@
 package com.daiane.pix.gateway.database.entity.conta;
 
+import com.daiane.pix.jpa.TipoPessoaJpaConverter;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -24,7 +26,7 @@ public class Conta {
     @Column(name = "documento_titular", nullable = false, length = 14)
     private String documentoTitular;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = TipoPessoaJpaConverter.class)
     @Column(name = "tp_pessoa", nullable = false, columnDefinition = "char")
     private TipoPessoa tipoPessoa;
 }

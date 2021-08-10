@@ -32,9 +32,8 @@ public class CadastrarConta {
 
         var conta = ContaConverter.converte(contaInput);
 
-        contaRepository.save(conta);
+        conta = contaRepository.save(conta);
 
-        ContaOutput contaOutput = ContaConverter.converte(conta);
-        return contaOutput;
+        return ContaConverter.converte(conta);
     }
 }
