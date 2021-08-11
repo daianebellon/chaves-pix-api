@@ -1,7 +1,10 @@
 package com.daiane.pix.validation;
 
+import org.springframework.stereotype.Component;
+
 import java.util.InputMismatchException;
 
+@Component
 public class CnpjValidator {
 
     public static boolean isCNPJ(String CNPJ) {

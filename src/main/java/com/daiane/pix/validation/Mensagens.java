@@ -17,4 +17,7 @@ public class Mensagens {
     public static final String MENSAGEM_EXCLUSAO = "Excluído com sucesso!!";
     public static final String MENSAGEM_NUMERO_DA_CONTA_DEVE_SER_IGUAL_A_20 = "O numero da conta deve estar entre 0 e 20 digitos!";
     public static final String MENSAGEM_NUMERO_DA_AGENCIA_DEVE_SER_IGUAL_A_4 = "O numero da agencia deve possuir apenas 4 digitos!";
+
+    public static final String MENSAGEM_TIPO_DE_CHAVE_INVALIDA = "Tipo de chave inválida! Por favor, verifique-a!";
+    public static final String MENSAGEM_VALOR_CHAVE_INVALIDA = "Tipo de chave inválida! Por favor, verifique-a!";
 }
