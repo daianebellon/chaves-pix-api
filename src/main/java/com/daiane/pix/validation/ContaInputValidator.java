@@ -23,7 +23,7 @@ public class ContaInputValidator {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_NUMERO_DA_AGENCIA_DEVE_SER_IGUAL_A_4);
         }
 
-        if (!CpfValidator.isCPF(contaInput.getDocumentoTitular()) && !CnpjValidator.isCNPJ(contaInput.getDocumentoTitular())) {
+        if (!CpfValidator.validar(contaInput.getDocumentoTitular()) && !CnpjValidator.validar(contaInput.getDocumentoTitular())) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_DOCUMENTO_DO_TITULAR_INVALIDO);
         }
 

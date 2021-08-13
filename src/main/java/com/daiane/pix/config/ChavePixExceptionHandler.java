@@ -10,6 +10,7 @@ public class ChavePixExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({IllegalArgumentException.class, NullPointerException.class})
     public ResponseEntity<String> tratarErrosDeValidacao(Exception exception) {
+        exception.printStackTrace();
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
 

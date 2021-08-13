@@ -20,4 +20,11 @@ public class Mensagens {
 
     public static final String MENSAGEM_TIPO_DE_CHAVE_INVALIDA = "Tipo de chave inválida! Por favor, verifique-a!";
     public static final String MENSAGEM_VALOR_CHAVE_INVALIDA = "Tipo de chave inválida! Por favor, verifique-a!";
+
+    public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido! Por favor, verifique-o!";
+    public static final String MENSAGEM_CNPJ_INVALIDO = "CNPJ inválido! Por favor, verifique-o!";
+    public static final String MENSAGEM_EMAIL_INVALIDO = "EMAIL inválido! Por favor, verifique-o!";
+    public static final String MENSAGEM_PHONE_INVALIDO = "TELEFONE inválido! Por favor, verifique-o!";
+
+    public static final String MENSAGEM_EVP_INVALIDO = "O tipo da chave é EVP, você não pode inserir um valor para a chave! Se desejar colocar um valor para a chave, verifique o tipo de chave!";
 }
