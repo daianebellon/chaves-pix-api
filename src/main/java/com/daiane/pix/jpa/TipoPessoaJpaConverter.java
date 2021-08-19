@@ -17,10 +17,10 @@ public class TipoPessoaJpaConverter implements AttributeConverter<TipoPessoa, St
     }
 
     @Override
-    public TipoPessoa convertToEntityAttribute(String s) {
-        if (s == null) {
+    public TipoPessoa convertToEntityAttribute(String string) {
+        if (string == null) {
             return null;
         }
-        return TipoPessoa.valueOfLabel(s);
+        return TipoPessoa.valueOfLabel(string);
     }
 }

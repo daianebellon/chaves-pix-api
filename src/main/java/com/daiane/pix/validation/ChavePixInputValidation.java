@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -20,28 +21,28 @@ public class ChavePixInputValidation {
         Objects.requireNonNull(chavePixInput.getIdConta(), Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO);
         Objects.requireNonNull(chavePixInput.getTipoChave(), Mensagens.MENSAGEM_TIPO_DE_CHAVE_INVALIDA);
 
-        if (chavePixInput.getTipoChave().equals(TipoChave.EVP)) {
-            validarEvp(chavePixInput);
-        } else {
-            Objects.requireNonNull(chavePixInput.getValorChave(), Mensagens.MENSAGEM_VALOR_CHAVE_INVALIDA);
-        }
-
         var conta = validarConta(chavePixInput);
 
-        if (chavePixInput.getTipoChave().equals(TipoChave.CPF)) {
-            validarCPF(chavePixInput, conta);
-        }
-
-        if (chavePixInput.getTipoChave().equals(TipoChave.CNPJ)) {
-           validarCNPJ(chavePixInput, conta);
-        }
-
-        if (chavePixInput.getTipoChave().equals(TipoChave.EMAIL)) {
-            validarEmail(chavePixInput);
-        }
-
-        if (chavePixInput.getTipoChave().equals(TipoChave.PHONE)) {
-            validarTelefone(chavePixInput);
+        TipoChave tipoChave = chavePixInput.getTipoChave();
+        switch (tipoChave) {
+            case EVP:
+                if (chavePixInput.getValorChave() != null && !chavePixInput.getValorChave().isEmpty()) {
+                    throw new IllegalArgumentException(Mensagens.MENSAGEM_EVP_INVALIDO);
+                }
+                chavePixInput.setValorChave(UUID.randomUUID().toString());
+                break;
+            case CPF:
+                validarCPF(chavePixInput, conta);
+                break;
+            case CNPJ:
+                validarCNPJ(chavePixInput, conta);
+                break;
+            case EMAIL:
+                validarEmail(chavePixInput);
+                break;
+            case PHONE:
+                validarPhone(chavePixInput);
+                break;
         }
     }
 
@@ -71,20 +72,10 @@ public class ChavePixInputValidation {
         }
     }
 
-    private void validarTelefone(ChavePixInput chavePixInput) {
-        if (!TelefoneValidator.validar(chavePixInput.getValorChave())) {
+    private void validarPhone(ChavePixInput chavePixInput) {
+        if (!PhoneValidator.validar(chavePixInput.getValorChave())) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_PHONE_INVALIDO);
         }
-    }
-
-    private void validarEvp(ChavePixInput chavePixInput) {
-        if (chavePixInput.getValorChave() != null && !chavePixInput.getValorChave().isEmpty()) {
-            throw new IllegalArgumentException(Mensagens.MENSAGEM_EVP_INVALIDO);
-        }
-
-        String evp = EvpValidator.validar();
-
-        chavePixInput.setValorChave(evp);
     }
 
 }
