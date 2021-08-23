@@ -1,11 +1,12 @@
 package com.daiane.pix.gateway.database.entity.conta;
 
+import com.daiane.pix.gateway.database.entity.chavepix.ChavePix;
 import com.daiane.pix.jpa.TipoPessoaJpaConverter;
 import lombok.Data;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 @Table(name = "contas")
@@ -29,4 +30,7 @@ public class Conta {
     @Convert(converter = TipoPessoaJpaConverter.class)
     @Column(name = "tp_pessoa", nullable = false, columnDefinition = "char")
     private TipoPessoa tipoPessoa;
+
+    @OneToMany(mappedBy = "conta")
+    private List<ChavePix> chavePixList;
 }

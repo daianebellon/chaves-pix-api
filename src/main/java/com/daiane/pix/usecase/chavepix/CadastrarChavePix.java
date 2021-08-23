@@ -4,7 +4,7 @@ import com.daiane.pix.converter.chavepix.ChavePixConverter;
 import com.daiane.pix.domain.chavepix.ChavePixInput;
 import com.daiane.pix.domain.chavepix.ChavePixOutput;
 import com.daiane.pix.gateway.database.repository.ChavePixRepository;
-import com.daiane.pix.validation.ChavePixInputValidation;
+import com.daiane.pix.validation.ChavePixInputValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class CadastrarChavePix {
 
     private final ChavePixRepository chavePixRepository;
-    private final ChavePixInputValidation chavePixInputValidation;
+    private final ChavePixInputValidator chavePixInputValidator;
 
     @Transactional
     public ChavePixOutput executar(ChavePixInput chavePixInput) {
-        chavePixInputValidation.validar(chavePixInput);
+        chavePixInputValidator.validar(chavePixInput);
 
         var chavePix = ChavePixConverter.converter(chavePixInput);
 

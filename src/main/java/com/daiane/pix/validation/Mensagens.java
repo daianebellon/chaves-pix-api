@@ -27,4 +27,5 @@ public class Mensagens {
     public static final String MENSAGEM_PHONE_INVALIDO = "TELEFONE inválido! Por favor, verifique-o!";
 
     public static final String MENSAGEM_EVP_INVALIDO = "O tipo da chave é EVP, você não pode inserir um valor para a chave! Se desejar colocar um valor para a chave, verifique o tipo de chave!";
+    public static final String MENSAGEM_QUANTIDADE_DE_CHAVE_PIX_ATINGIDA = "Você atingiu o número de chave pix!";
 }
