@@ -33,4 +33,5 @@ public class Conta {
 
     @OneToMany(mappedBy = "conta")
     private List<ChavePix> chavePixList;
+
 }

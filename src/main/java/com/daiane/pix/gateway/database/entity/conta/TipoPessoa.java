@@ -13,9 +13,9 @@ public enum TipoPessoa {
         this.label = label;
     }
 
-    public static TipoPessoa valueOfLabel(String label) {
+    public static TipoPessoa valueOfLabel(String label2) {
         for (TipoPessoa e : values()) {
-            if (e.label.equals(label)) {
+            if (e.label.equals(label2)) {
                 return e;
             }
         }

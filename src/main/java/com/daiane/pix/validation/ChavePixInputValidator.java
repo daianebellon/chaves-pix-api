@@ -19,6 +19,8 @@ public class ChavePixInputValidator {
 
     private final ContaRepository contaRepository;
     private final ChavePixRepository chavePixRepository;
+    private static final Integer QUANTIDADE_MAXIMA_DE_CHAVES_PARA_PESSOA_FISICA = 5;
+    private static final Integer QUANTIDADE_MAXIMA_DE_CHAVES_PARA_PESSOA_JURIDICA = 10;
 
     public void validar(ChavePixInput chavePixInput) {
         Objects.requireNonNull(chavePixInput.getIdConta(), Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO);
@@ -64,11 +66,11 @@ public class ChavePixInputValidator {
 
     private void validarQuantidadeDeChaves(Conta conta) {
         if (conta.getTipoPessoa().equals(TipoPessoa.PHYSICAL_PERSON)) {
-            if (conta.getChavePixList().size() > 5) {
+            if (conta.getChavePixList().size() >= QUANTIDADE_MAXIMA_DE_CHAVES_PARA_PESSOA_FISICA) {
                 throw new IllegalArgumentException(Mensagens.MENSAGEM_QUANTIDADE_DE_CHAVE_PIX_ATINGIDA);
             }
         } else {
-            if (conta.getChavePixList().size() > 10) {
+            if (conta.getChavePixList().size() >= QUANTIDADE_MAXIMA_DE_CHAVES_PARA_PESSOA_JURIDICA) {
                 throw new IllegalArgumentException(Mensagens.MENSAGEM_QUANTIDADE_DE_CHAVE_PIX_ATINGIDA);
             }
         }

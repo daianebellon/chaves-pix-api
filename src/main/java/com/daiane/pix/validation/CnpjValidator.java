@@ -40,8 +40,7 @@ public class CnpjValidator {
             soma = soma + (num * peso);
             peso = peso + 1;
 
-            if (peso == 10)
-                peso = 2;
+            if (peso == 10) { peso = 2;}
         }
 
         return validarDigitos(soma);
@@ -71,8 +70,7 @@ public class CnpjValidator {
             num = ((int) cnpj.charAt(i)) - 48;
             soma = soma + (num * peso);
             peso = peso + 1;
-            if (peso == 10)
-                peso = 2;
+            if (peso == 10) { peso = 2;}
         }
         return validarDigitos(soma);
     }
