@@ -24,11 +24,11 @@ public class ChavePixWS {
 
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Integer id) {
-        excluirChavePix.excluir(id);
+        excluirChavePix.executar(id);
     }
 
     @GetMapping("/buscar/{id}")
-    public void buscarPeloId(@PathVariable Integer id) {
-        buscarChavePix.buscarPeloId(id);
+    public ChavePixOutput buscarPeloId(@PathVariable Integer id) {
+        return buscarChavePix.executar(id);
     }
 }

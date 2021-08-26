@@ -15,7 +15,7 @@ public class ExcluirChavePix {
     private final IdValidator idValidator;
 
     @Transactional
-    public void excluir(Integer id) {
+    public void executar(Integer id) {
         idValidator.validar(id);
         chavePixRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO));
         chavePixRepository.deleteById(id);

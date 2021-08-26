@@ -11,7 +11,7 @@ import static com.daiane.pix.constantes.ConstantesRegex.EMAIL_EXPRESSAO;
 public class EmailValidator {
 
     public static boolean validar(String email) {
-        if (email == null || email.isBlank()) {//falar
+        if (email == null || email.isBlank()) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_EMAIL_INVALIDO);
         }
         var pattern = Pattern.compile(EMAIL_EXPRESSAO, Pattern.CASE_INSENSITIVE);

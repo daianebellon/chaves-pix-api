@@ -21,6 +21,7 @@ public class ChavePixConverter {
 
     public static ChavePixOutput converter(ChavePix chavePix) {
         ChavePixOutput chavePixOutput = new ChavePixOutput();
+        chavePixOutput.setIdChave(chavePix.getIdChave());
         chavePixOutput.setIdConta(chavePix.getConta().getId());
         chavePixOutput.setTipoChave(chavePix.getTipoChave());
         chavePixOutput.setValorChave(chavePix.getValorChave());

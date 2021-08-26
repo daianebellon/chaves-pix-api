@@ -17,7 +17,7 @@ public class BuscarChavePix {
     private final IdValidator idValidator;
 
     @Transactional
-    public ChavePixOutput buscarPeloId(Integer id) {
+    public ChavePixOutput executar(Integer id) {
         idValidator.validar(id);
         var chavePix = chavePixRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO));
         return ChavePixConverter.converter(chavePix);

@@ -17,6 +17,6 @@ public class CodigoValidacao {
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "tp_status", nullable = false)
-    private TipoStatus tipoStatus;
+    private TipoStatus tipoStatus = TipoStatus.NAO_UTILIZADO;
 
 }
