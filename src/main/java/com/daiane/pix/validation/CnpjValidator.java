@@ -10,7 +10,7 @@ import java.util.Objects;
 public class CnpjValidator {
 
     public static boolean validar(String cnpj) {
-        Objects.requireNonNull(Mensagens.MENSAGEM_CNPJ_INVALIDO);
+        Objects.requireNonNull(cnpj, Mensagens.MENSAGEM_CNPJ_INVALIDO);
 
         if (validarSeCnpjEhFormadoPorSequenciaDeNumerosIguais(cnpj)) {
             return false;

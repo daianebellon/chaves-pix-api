@@ -12,7 +12,7 @@ public class EmailValidator {
 
     public static boolean validar(String email) {
         if (email == null || email.isBlank()) {
-            throw new IllegalArgumentException(Mensagens.MENSAGEM_EMAIL_INVALIDO);
+            return false;
         }
         var pattern = Pattern.compile(EMAIL_EXPRESSAO, Pattern.CASE_INSENSITIVE);
         var matcher = pattern.matcher(email);

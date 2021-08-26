@@ -9,10 +9,8 @@ class EmailValidatorTest {
 
     @Test
     void emailEhNUll() {
-        NullPointerException exception = assertThrows(NullPointerException.class, () -> {
-            EmailValidator.validar(null);
-        });
-        Assertions.assertEquals(Mensagens.MENSAGEM_EMAIL_INVALIDO, exception.getMessage());
+        boolean emailValido = EmailValidator.validar(null);
+        Assertions.assertFalse(emailValido);
     }
 
     @Test

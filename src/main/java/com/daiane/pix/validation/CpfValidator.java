@@ -10,7 +10,7 @@ import java.util.Objects;
 public class CpfValidator {
 
     public static boolean validar(String cpf) {
-        Objects.requireNonNull(Mensagens.MENSAGEM_CPF_INVALIDO);
+        Objects.requireNonNull(cpf,Mensagens.MENSAGEM_CPF_INVALIDO);
 
         if (validarCpfInformado(cpf)) {return false;}
 
