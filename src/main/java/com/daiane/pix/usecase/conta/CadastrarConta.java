@@ -20,11 +20,13 @@ public class CadastrarConta {
     private final ContaRepository contaRepository;
     private final ContaInputValidator contaInputValidator;
 
+
     @Transactional
     public ContaOutput executar(ContaInput contaInput) {
         contaInputValidator.validar(contaInput);
 
-        Optional<Conta> existeConta = contaRepository.findByNumeroAgenciaAndNumeroConta(contaInput.getNumeroAgencia(), contaInput.getNumeroConta());
+        Optional<Conta> existeConta = contaRepository
+                .findByNumeroAgenciaAndNumeroConta(contaInput.getNumeroAgencia(), contaInput.getNumeroConta());
 
         if (existeConta.isPresent()) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_CONTA_INVALIDA);

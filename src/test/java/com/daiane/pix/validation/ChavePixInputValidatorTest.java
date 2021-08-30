@@ -1,22 +1,15 @@
 package com.daiane.pix.validation;
 
-import com.daiane.pix.converter.conta.ContaConverter;
-import com.daiane.pix.domain.chavepix.ChavePixInput;
-import com.daiane.pix.domain.conta.ContaOutput;
 import com.daiane.pix.gateway.database.entity.chavepix.ChavePix;
 import com.daiane.pix.gateway.database.entity.chavepix.TipoChave;
 import com.daiane.pix.gateway.database.entity.conta.Conta;
 import com.daiane.pix.gateway.database.entity.conta.TipoPessoa;
 import com.daiane.pix.gateway.database.repository.ChavePixRepository;
 import com.daiane.pix.gateway.database.repository.ContaRepository;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +22,7 @@ class ChavePixInputValidatorTest {
 
     @Test
     void validarSeIdContaEhNull() {
-        ChavePixInput chavePixInput = new ChavePixInput();
+        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
         chavePixInput.setIdConta(null);
         chavePixInput.setTipoChave(TipoChave.CPF);
         chavePixInput.setValorChave("10833519905");
@@ -45,7 +38,7 @@ class ChavePixInputValidatorTest {
 
     @Test
     void validarSeTipoDeChaveEhNull() {
-        ChavePixInput chavePixInput = new ChavePixInput();
+        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
         chavePixInput.setIdConta(1);
         chavePixInput.setTipoChave(null);
         chavePixInput.setValorChave("10833519905");
@@ -61,7 +54,7 @@ class ChavePixInputValidatorTest {
 
     @Test
     void validarSeContaNaoExiste() {
-        ChavePixInput chavePixInput = new ChavePixInput();
+        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
         chavePixInput.setIdConta(1);
         chavePixInput.setTipoChave(TipoChave.CPF);
         chavePixInput.setValorChave(null);
@@ -87,7 +80,7 @@ class ChavePixInputValidatorTest {
         Mockito.when(contaRepository.findById(Mockito.any())).thenReturn(Optional.of(conta));
 
         //executar
-        ChavePixInput chavePixInput = new ChavePixInput();
+        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
         chavePixInput.setIdConta(1);
         chavePixInput.setTipoChave(TipoChave.CPF);
         chavePixInput.setValorChave("10833519905");

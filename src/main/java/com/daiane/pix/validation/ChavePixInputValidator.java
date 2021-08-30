@@ -1,6 +1,5 @@
 package com.daiane.pix.validation;
 
-import com.daiane.pix.domain.chavepix.ChavePixInput;
 import com.daiane.pix.gateway.database.entity.chavepix.ChavePix;
 import com.daiane.pix.gateway.database.entity.conta.Conta;
 import com.daiane.pix.gateway.database.entity.conta.TipoPessoa;
@@ -22,7 +21,7 @@ public class ChavePixInputValidator {
     private static final Integer QUANTIDADE_MAXIMA_DE_CHAVES_PARA_PESSOA_FISICA = 5;
     private static final Integer QUANTIDADE_MAXIMA_DE_CHAVES_PARA_PESSOA_JURIDICA = 10;
 
-    public void validar(ChavePixInput chavePixInput) {
+    public void validar(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput) {
         Objects.requireNonNull(chavePixInput.getIdConta(), Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO);
         Objects.requireNonNull(chavePixInput.getTipoChave(), Mensagens.MENSAGEM_TIPO_DE_CHAVE_INVALIDA);
 
@@ -31,9 +30,13 @@ public class ChavePixInputValidator {
         validarQuantidadeDeChaves(conta);
         validarSeJaExisteChaveAssociadaAhConta(chavePixInput);
         validarTipoDeChave(chavePixInput, conta);
+
+//        if (chavePixInput.getTipoChave().equals(TipoChave.EMAIL) || chavePixInput.getTipoChave().equals(TipoChave.PHONE)) {
+//
+//        }
     }
 
-    private void validarTipoDeChave(ChavePixInput chavePixInput, Conta conta) {
+    private void validarTipoDeChave(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput, Conta conta) {
         var tipoChave = chavePixInput.getTipoChave();
         switch (tipoChave) {
             case EVP:
@@ -57,7 +60,7 @@ public class ChavePixInputValidator {
         }
     }
 
-    private void validarSeJaExisteChaveAssociadaAhConta(ChavePixInput chavePixInput) {
+    private void validarSeJaExisteChaveAssociadaAhConta(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput) {
         Optional<ChavePix> byValorChave = chavePixRepository.findByValorChave(chavePixInput.getValorChave());
         if (byValorChave.isPresent()) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_TIPO_DE_CHAVE_INVALIDA);
@@ -76,7 +79,7 @@ public class ChavePixInputValidator {
         }
     }
 
-    private Conta validarConta(ChavePixInput chavePixInput) {
+    private Conta validarConta(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput) {
         Optional<Conta> existeConta = contaRepository.findById(chavePixInput.getIdConta());
         if (existeConta.isEmpty()) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO);
@@ -84,25 +87,25 @@ public class ChavePixInputValidator {
         return existeConta.get();
     }
 
-    private void validarCPF(ChavePixInput chavePixInput, Conta conta) {
+    private void validarCPF(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput, Conta conta) {
         if (!conta.getDocumentoTitular().equals(chavePixInput.getValorChave())) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_CPF_INVALIDO);
         }
     }
 
-    private void validarCNPJ(ChavePixInput chavePixInput, Conta conta) {
+    private void validarCNPJ(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput, Conta conta) {
         if (!conta.getDocumentoTitular().equals(chavePixInput.getValorChave())) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_CNPJ_INVALIDO);
         }
     }
 
-    private void validarEmail(ChavePixInput chavePixInput) {
+    private void validarEmail(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput) {
         if (!EmailValidator.validar(chavePixInput.getValorChave())) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_EMAIL_INVALIDO);
         }
     }
 
-    private void validarPhone(ChavePixInput chavePixInput) {
+    private void validarPhone(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput) {
         if (!PhoneValidator.validar(chavePixInput.getValorChave())) {
             throw new IllegalArgumentException(Mensagens.MENSAGEM_PHONE_INVALIDO);
         }

@@ -3,7 +3,7 @@ package com.daiane.pix.validation;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import static com.daiane.pix.constantes.ConstantesRegex.PHONE_EXPRESSAO;
+import static com.daiane.pix.constantes.Constantes.PHONE_EXPRESSAO;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PhoneValidator {
