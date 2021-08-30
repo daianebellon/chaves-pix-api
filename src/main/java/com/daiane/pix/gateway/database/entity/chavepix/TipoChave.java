@@ -4,6 +4,6 @@ public enum TipoChave {
     CPF,
     CNPJ,
     EMAIL,
-    TELEFONE,
+    PHONE,
     EVP
 }
