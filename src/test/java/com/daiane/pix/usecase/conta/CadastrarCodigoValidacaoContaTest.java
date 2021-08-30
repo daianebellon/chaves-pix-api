@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CadastrarCodigovalidacaoContaTest {
+class CadastrarCodigoValidacaoContaTest {
 
     private final ContaRepository contaRepository = Mockito.mock(ContaRepository.class);
     private final ContaInputValidator contaInputValidator = new ContaInputValidator();

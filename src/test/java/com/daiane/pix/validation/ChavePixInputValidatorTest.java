@@ -1,5 +1,6 @@
 package com.daiane.pix.validation;
 
+import com.daiane.pix.domain.chavepix.ChavePixInput;
 import com.daiane.pix.gateway.database.entity.chavepix.ChavePix;
 import com.daiane.pix.gateway.database.entity.chavepix.TipoChave;
 import com.daiane.pix.gateway.database.entity.conta.Conta;
@@ -22,7 +23,7 @@ class ChavePixInputValidatorTest {
 
     @Test
     void validarSeIdContaEhNull() {
-        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
+        ChavePixInput chavePixInput = new ChavePixInput();
         chavePixInput.setIdConta(null);
         chavePixInput.setTipoChave(TipoChave.CPF);
         chavePixInput.setValorChave("10833519905");
@@ -38,7 +39,7 @@ class ChavePixInputValidatorTest {
 
     @Test
     void validarSeTipoDeChaveEhNull() {
-        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
+        ChavePixInput chavePixInput = new ChavePixInput();
         chavePixInput.setIdConta(1);
         chavePixInput.setTipoChave(null);
         chavePixInput.setValorChave("10833519905");
@@ -54,7 +55,7 @@ class ChavePixInputValidatorTest {
 
     @Test
     void validarSeContaNaoExiste() {
-        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
+        ChavePixInput chavePixInput = new ChavePixInput();
         chavePixInput.setIdConta(1);
         chavePixInput.setTipoChave(TipoChave.CPF);
         chavePixInput.setValorChave(null);
@@ -80,7 +81,7 @@ class ChavePixInputValidatorTest {
         Mockito.when(contaRepository.findById(Mockito.any())).thenReturn(Optional.of(conta));
 
         //executar
-        com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput = new com.daiane.pix.domain.chavepix.ChavePixInput();
+        ChavePixInput chavePixInput = new ChavePixInput();
         chavePixInput.setIdConta(1);
         chavePixInput.setTipoChave(TipoChave.CPF);
         chavePixInput.setValorChave("10833519905");

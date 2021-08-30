@@ -13,7 +13,7 @@ import static com.daiane.pix.constantes.Constantes.MULTIPLICADOR_PARA_CODIGO_COM
 
 @Service
 @RequiredArgsConstructor
-public class CadastrarCodigovalidacao {
+public class CadastrarCodigoValidacao {
 
     private final CodigoValidacaoRepository codigoValidacaoRepository;
     private final ChavePixInputValidator chavePixInputValidator;
@@ -21,7 +21,6 @@ public class CadastrarCodigovalidacao {
     @Transactional
     public void executar(ChavePix chavePix) {
         gerarCodigoValidacao(chavePix);
-
     }
 
     private void gerarCodigoValidacao(ChavePix chavePix) {

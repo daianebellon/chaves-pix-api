@@ -1,5 +1,6 @@
 package com.daiane.pix.converter.chavepix;
 
+import com.daiane.pix.domain.chavepix.ChavePixInput;
 import com.daiane.pix.domain.chavepix.ChavePixOutput;
 import com.daiane.pix.gateway.database.entity.chavepix.ChavePix;
 import com.daiane.pix.gateway.database.entity.conta.Conta;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 
 public class ChavePixConverter {
 
-    public static ChavePix converter(com.daiane.pix.domain.chavepix.ChavePixInput chavePixInput) {
+    public static ChavePix converter(ChavePixInput chavePixInput) {
         ChavePix chavePix = new ChavePix();
         chavePix.setConta(new Conta());
         chavePix.getConta().setId(chavePixInput.getIdConta());
