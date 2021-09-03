@@ -1,10 +1,11 @@
 package com.daiane.pix.usecase.codigovalidacao;
 
-import com.daiane.pix.gateway.database.entity.chavepix.ChavePix;
+import com.daiane.pix.domain.chavepix.ChavePixInput;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacao;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacaoId;
 import com.daiane.pix.gateway.database.repository.CodigoValidacaoRepository;
-import com.daiane.pix.validation.ChavePixInputValidator;
+import com.daiane.pix.gateway.database.repository.ContaRepository;
+import com.daiane.pix.validation.Mensagens;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,22 +17,32 @@ import static com.daiane.pix.constantes.Constantes.MULTIPLICADOR_PARA_CODIGO_COM
 public class CadastrarCodigoValidacao {
 
     private final CodigoValidacaoRepository codigoValidacaoRepository;
-    private final ChavePixInputValidator chavePixInputValidator;
+    private final ContaRepository contaRepository;
 
     @Transactional
-    public void executar(ChavePix chavePix) {
-        gerarCodigoValidacao(chavePix);
+    public void executar(ChavePixInput chavePixInput) {
+        var codigoValidacao = gerarCodigoValidacao(chavePixInput);
+        codigoValidacaoRepository.save(codigoValidacao);
     }
 
-    private void gerarCodigoValidacao(ChavePix chavePix) {
+    private CodigoValidacao gerarCodigoValidacao(ChavePixInput chavePixInput) {
+        var conta = contaRepository.findById(chavePixInput.getIdConta())
+                .orElseThrow(() -> new NullPointerException(Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO));
+
         var codigoValidacaoId = new CodigoValidacaoId();
-        codigoValidacaoId.setConta(chavePix.getConta());
-        codigoValidacaoId.setTipoChave(chavePix.getTipoChave());
-        codigoValidacaoId.setValorChave(chavePix.getValorChave());
+        codigoValidacaoId.setConta(conta);
+        codigoValidacaoId.setTipoChave(chavePixInput.getTipoChave());
+        codigoValidacaoId.setValorChave(chavePixInput.getValorChave());
 
         var codigoValidacao = new CodigoValidacao();
         codigoValidacao.setCodigoValidacaoId(codigoValidacaoId);
-        codigoValidacao.setCodigoOtp((int) (Math.random() * MULTIPLICADOR_PARA_CODIGO_COM_SEIS_DIGITOS));
+        codigoValidacao.setCodigoOtp(getCodigoOtp());
+
+        return codigoValidacao;
     }
 
+    private int getCodigoOtp() {
+        return (int) (Math.random() * MULTIPLICADOR_PARA_CODIGO_COM_SEIS_DIGITOS);
+    }
 }
+

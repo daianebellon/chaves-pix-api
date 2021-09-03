@@ -31,10 +31,6 @@ public class ChavePixInputValidator {
         validarQuantidadeDeChaves(conta);
         validarSeJaExisteChaveAssociadaAhConta(chavePixInput);
         validarTipoDeChave(chavePixInput, conta);
-
-//        if (chavePixInput.getTipoChave().equals(TipoChave.EMAIL) || chavePixInput.getTipoChave().equals(TipoChave.PHONE)) {
-//
-//        }
     }
 
     private void validarTipoDeChave(ChavePixInput chavePixInput, Conta conta) {

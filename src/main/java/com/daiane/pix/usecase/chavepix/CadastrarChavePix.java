@@ -3,7 +3,11 @@ package com.daiane.pix.usecase.chavepix;
 import com.daiane.pix.converter.chavepix.ChavePixConverter;
 import com.daiane.pix.domain.chavepix.ChavePixInput;
 import com.daiane.pix.domain.chavepix.ChavePixOutput;
+import com.daiane.pix.gateway.database.entity.chavepix.TipoChave;
 import com.daiane.pix.gateway.database.repository.ChavePixRepository;
+import com.daiane.pix.gateway.database.repository.CodigoValidacaoRepository;
+import com.daiane.pix.gateway.database.repository.ContaRepository;
+import com.daiane.pix.usecase.codigovalidacao.CadastrarCodigoValidacao;
 import com.daiane.pix.validation.ChavePixInputValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +19,17 @@ public class CadastrarChavePix {
 
     private final ChavePixRepository chavePixRepository;
     private final ChavePixInputValidator chavePixInputValidator;
+    private final CodigoValidacaoRepository codigoValidacaoRepository;
+    private final  ContaRepository contaRepository;
 
     @Transactional
     public ChavePixOutput executar(ChavePixInput chavePixInput) {
         chavePixInputValidator.validar(chavePixInput);
+
+        if (chavePixInput.getTipoChave().equals(TipoChave.EMAIL) || chavePixInput.getTipoChave().equals(TipoChave.PHONE)) {
+            var cadastrarCodigoValidacao = new CadastrarCodigoValidacao(codigoValidacaoRepository, contaRepository);
+            cadastrarCodigoValidacao.executar(chavePixInput);
+        }
 
         var chavePix = ChavePixConverter.converter(chavePixInput);
 
