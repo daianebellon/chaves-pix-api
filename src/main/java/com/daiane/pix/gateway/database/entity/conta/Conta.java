@@ -37,7 +37,6 @@ public class Conta {
 
     @Convert(converter = TipoPessoaJpaConverter.class)
     @Column(name = "tp_pessoa", columnDefinition = "char")
-    @NotNull(message = "Tipo de pessoa não pode ser nulo")
     private TipoPessoa tipoPessoa;
 
     @OneToMany(mappedBy = "conta")

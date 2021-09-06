@@ -1,10 +1,12 @@
 package com.daiane.pix.usecase.codigovalidacao;
 
 import com.daiane.pix.domain.chavepix.ChavePixInput;
+import com.daiane.pix.domain.chavepix.ChavePixOutput;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacao;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacaoId;
 import com.daiane.pix.gateway.database.repository.CodigoValidacaoRepository;
 import com.daiane.pix.gateway.database.repository.ContaRepository;
+import com.daiane.pix.usecase.chavepix.BuscarChavePix;
 import com.daiane.pix.validation.Mensagens;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,25 +16,28 @@ import static com.daiane.pix.constantes.Constantes.MULTIPLICADOR_PARA_CODIGO_COM
 
 @Service
 @RequiredArgsConstructor
-public class CadastrarCodigoValidacao {
+public class GerarCodigoValidacao {
 
     private final CodigoValidacaoRepository codigoValidacaoRepository;
     private final ContaRepository contaRepository;
+    private final BuscarChavePix buscarChavePix;
 
     @Transactional
-    public void executar(ChavePixInput chavePixInput) {
-        var codigoValidacao = gerarCodigoValidacao(chavePixInput);
+    public String executar(Integer idChavePix) {
+        var chavePix = buscarChavePix.executar(idChavePix);
+        var codigoValidacao = gerarCodigoValidacao(chavePix);
         codigoValidacaoRepository.save(codigoValidacao);
+        return "Opa, deu bao";
     }
 
-    private CodigoValidacao gerarCodigoValidacao(ChavePixInput chavePixInput) {
-        var conta = contaRepository.findById(chavePixInput.getIdConta())
+    private CodigoValidacao gerarCodigoValidacao(ChavePixOutput chavePix) {
+        var conta = contaRepository.findById(chavePix.getIdConta())
                 .orElseThrow(() -> new NullPointerException(Mensagens.MENSAGEM_ID_OBRIGATORIO_E_DEVE_SER_VALIDO));
 
         var codigoValidacaoId = new CodigoValidacaoId();
         codigoValidacaoId.setConta(conta);
-        codigoValidacaoId.setTipoChave(chavePixInput.getTipoChave());
-        codigoValidacaoId.setValorChave(chavePixInput.getValorChave());
+        codigoValidacaoId.setTipoChave(chavePix.getTipoChave());
+        codigoValidacaoId.setValorChave(chavePix.getValorChave());
 
         var codigoValidacao = new CodigoValidacao();
         codigoValidacao.setCodigoValidacaoId(codigoValidacaoId);

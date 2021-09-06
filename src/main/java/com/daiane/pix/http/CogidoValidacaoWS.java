@@ -1,23 +1,28 @@
 package com.daiane.pix.http;
 
-import com.daiane.pix.domain.codigovalidacao.CodigoValidacaoInput;
-import com.daiane.pix.usecase.codigovalidacao.VerificarCodigoValidacao;
+import com.daiane.pix.usecase.codigovalidacao.GerarCodigoValidacao;
+import com.daiane.pix.usecase.codigovalidacao.ValidarCodigoValidacao;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/codigovalidacao")
 @RequiredArgsConstructor
 public class CogidoValidacaoWS {
 
-    private final VerificarCodigoValidacao verificarCodigoValidacao;
+    private final ValidarCodigoValidacao validarCodigoValidacao;
+    private final GerarCodigoValidacao gerarCodigoValidacao;
 
-    @PostMapping
-    public String validarCodigoValidacao(@RequestBody CodigoValidacaoInput codigoValidacaoInput) {
-        return verificarCodigoValidacao.validarCodigoRecebidoTela(codigoValidacaoInput);
+    @GetMapping("gerar/{id}")
+    public String gerarCodigoValidacao(@PathVariable("id") Integer idChavePix) {
+        return gerarCodigoValidacao.executar(idChavePix);
     }
+
+    @RequestMapping(method = RequestMethod.HEAD)
+    public String validarCodigoValidacao(@RequestHeader("Codigo-Otp") Integer codigoOtp) {
+        return validarCodigoValidacao.executar(codigoOtp);
+    }
+
+
 
 }
