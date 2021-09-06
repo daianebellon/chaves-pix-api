@@ -1,12 +1,11 @@
 package com.daiane.pix.usecase.codigovalidacao;
 
-import com.daiane.pix.domain.chavepix.ChavePixInput;
 import com.daiane.pix.domain.chavepix.ChavePixOutput;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacao;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacaoId;
 import com.daiane.pix.gateway.database.repository.CodigoValidacaoRepository;
 import com.daiane.pix.gateway.database.repository.ContaRepository;
-import com.daiane.pix.usecase.chavepix.BuscarChavePix;
+import com.daiane.pix.usecase.chavepix.BuscarChavePixPeloId;
 import com.daiane.pix.validation.Mensagens;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,11 +19,11 @@ public class GerarCodigoValidacao {
 
     private final CodigoValidacaoRepository codigoValidacaoRepository;
     private final ContaRepository contaRepository;
-    private final BuscarChavePix buscarChavePix;
+    private final BuscarChavePixPeloId buscarChavePixPeloId;
 
     @Transactional
     public String executar(Integer idChavePix) {
-        var chavePix = buscarChavePix.executar(idChavePix);
+        var chavePix = buscarChavePixPeloId.executar(idChavePix);
         var codigoValidacao = gerarCodigoValidacao(chavePix);
         codigoValidacaoRepository.save(codigoValidacao);
         return "Opa, deu bao";

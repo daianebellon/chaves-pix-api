@@ -1,7 +1,5 @@
 package com.daiane.pix.usecase.codigovalidacao;
 
-import com.daiane.pix.domain.codigovalidacao.CodigoValidacaoInput;
-import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacao;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.TipoStatus;
 import com.daiane.pix.gateway.database.repository.CodigoValidacaoRepository;
 import com.daiane.pix.validation.Mensagens;

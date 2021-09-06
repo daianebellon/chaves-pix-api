@@ -9,8 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface ChavePixRepository extends JpaRepository<ChavePix, Integer> {
-
-    Optional<ChavePix> findByContaId(Integer id);
-
     Optional<ChavePix> findByValorChave(String valorChave);
 }
