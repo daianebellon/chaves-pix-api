@@ -1,5 +1,6 @@
 package com.daiane.pix.usecase.codigovalidacao;
 
+import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacao;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.TipoStatus;
 import com.daiane.pix.gateway.database.repository.CodigoValidacaoRepository;
 import com.daiane.pix.validation.Mensagens;
@@ -15,9 +16,9 @@ public class ValidarCodigoValidacao {
     private final CodigoValidacaoRepository codigoValidacaoRepository;
 
     @Transactional
-    public String executar(Integer codigoOtp) {
-        var codigoValidacao = codigoValidacaoRepository
-                .findByCodigoOtpAndTipoStatus(codigoOtp, TipoStatus.NAO_UTILIZADO)
+    public String executar(CodigoValidacao codigoValidacao) {
+        codigoValidacaoRepository
+                .findByCodigoValidacaoIdAndCodigoOtpAndTipoStatus(codigoValidacao.getCodigoValidacaoId(), codigoValidacao.getCodigoOtp(), codigoValidacao.getTipoStatus())
                 .orElseThrow(() -> new NullPointerException(Mensagens.MENSAGENS_CODIGO_VALIDACAO_INVALIDO));
 
         if (codigoValidacao.getTipoStatus().equals(TipoStatus.NAO_UTILIZADO)) {

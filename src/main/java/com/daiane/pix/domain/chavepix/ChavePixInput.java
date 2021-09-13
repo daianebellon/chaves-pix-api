@@ -20,5 +20,4 @@ public class ChavePixInput {
 
     @NotNull(message = "Tipo da chave não pode ser nulo")
     private TipoChave tipoChave;
-
 }

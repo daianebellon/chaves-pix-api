@@ -30,12 +30,12 @@ public class ChavePixWS {
         excluirChavePix.executar(id);
     }
 
-    @GetMapping("/buscar/{id}")
+    @GetMapping("/{id}")
     public ChavePixOutput buscarPeloId(@PathVariable Integer id) {
         return buscarChavePixPeloId.executar(id);
     }
 
-    @GetMapping("/buscartodas")
+    @GetMapping
     public Page<ChavePixOutput> buscarTodos(@RequestParam int pagina, @RequestParam int quantidade) {
         return buscarChavesPix.executar(pagina, quantidade);
     }
