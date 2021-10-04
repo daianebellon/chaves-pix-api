@@ -1,6 +1,7 @@
 package com.daiane.pix.validation;
 
 import com.daiane.pix.domain.conta.ContaInput;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;

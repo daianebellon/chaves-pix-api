@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 
 import java.util.Optional;
 
-class BuscarChavePixTest {
+class BuscarChavePixPeloIdTest {
 
     private final ChavePixRepository chavePixRepository = Mockito.mock(ChavePixRepository.class);
     private final IdValidator idValidator = new IdValidator();
@@ -37,8 +37,8 @@ class BuscarChavePixTest {
         Mockito.when(chavePixRepository.findById(Mockito.any())).thenReturn(Optional.of(chavePix));
 
         //executar
-        BuscarChavePix buscarChavePix = new BuscarChavePix(chavePixRepository, idValidator);
-        ChavePixOutput resultado = buscarChavePix.executar(1);
+        BuscarChavePixPeloId buscarChavePixPeloId = new BuscarChavePixPeloId(chavePixRepository, idValidator);
+        ChavePixOutput resultado = buscarChavePixPeloId.executar(1);
 
         //Assertivas
         Assertions.assertEquals(chavePixOutput, resultado);

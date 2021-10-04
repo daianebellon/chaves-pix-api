@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.regex.Pattern;
 
-import static com.daiane.pix.constantes.ConstantesRegex.EMAIL_EXPRESSAO;
+import static com.daiane.pix.constantes.Constantes.EMAIL_EXPRESSAO;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EmailValidator {
