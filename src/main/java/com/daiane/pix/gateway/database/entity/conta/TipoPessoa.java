@@ -2,6 +2,7 @@ package com.daiane.pix.gateway.database.entity.conta;
 
 import lombok.Getter;
 
+
 public enum TipoPessoa {
     PHYSICAL_PERSON("F"),
     LEGAL_PERSON("J");
@@ -23,3 +24,6 @@ public enum TipoPessoa {
     }
 
 }
+
+
+

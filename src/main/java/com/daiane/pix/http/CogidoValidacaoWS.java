@@ -1,7 +1,7 @@
 package com.daiane.pix.http;
 
 import com.daiane.pix.domain.chavepix.ChavePixInput;
-import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacao;
+import com.daiane.pix.domain.codigovalidacao.CodigoValidacaoInput;
 import com.daiane.pix.usecase.codigovalidacao.GerarCodigoValidacao;
 import com.daiane.pix.usecase.codigovalidacao.ValidarCodigoValidacao;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +21,8 @@ public class CogidoValidacaoWS {
     }
 
     @PutMapping("/validar")
-    public String validarCodigoValidacao(@RequestBody CodigoValidacao codigoValidacao) {
-        return validarCodigoValidacao.executar(codigoValidacao);
+    public void validarCodigoValidacao(@RequestBody CodigoValidacaoInput codigoValidacao) {
+        validarCodigoValidacao.executar(codigoValidacao);
     }
 
 }

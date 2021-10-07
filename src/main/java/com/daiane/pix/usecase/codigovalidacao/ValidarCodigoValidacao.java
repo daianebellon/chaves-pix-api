@@ -1,5 +1,6 @@
 package com.daiane.pix.usecase.codigovalidacao;
 
+import com.daiane.pix.domain.codigovalidacao.CodigoValidacaoInput;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.CodigoValidacao;
 import com.daiane.pix.gateway.database.entity.codigovalidacao.TipoStatus;
 import com.daiane.pix.gateway.database.repository.CodigoValidacaoRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,17 +18,33 @@ public class ValidarCodigoValidacao {
     private final CodigoValidacaoRepository codigoValidacaoRepository;
 
     @Transactional
-    public String executar(CodigoValidacao codigoValidacao) {
-        codigoValidacaoRepository
-                .findByCodigoValidacaoIdAndCodigoOtpAndTipoStatus(codigoValidacao.getCodigoValidacaoId(), codigoValidacao.getCodigoOtp(), codigoValidacao.getTipoStatus())
-                .orElseThrow(() -> new NullPointerException(Mensagens.MENSAGENS_CODIGO_VALIDACAO_INVALIDO));
+    public void executar(CodigoValidacaoInput codigoValidacaoInput) {
+        Optional<CodigoValidacao> codigoValidacao = codigoValidacaoRepository
+                .findByCodigoOtpAndCodigoValidacaoIdContaIdAndCodigoValidacaoIdTipoChaveAndCodigoValidacaoIdValorChaveAndTipoStatus(
+                        codigoValidacaoInput.getCodigoValidacao(),
+                        codigoValidacaoInput.getContaId(),
+                        codigoValidacaoInput.getTipoChave(),
+                        codigoValidacaoInput.getValorChave(),
+                        TipoStatus.NAO_UTILIZADO);
 
-        if (codigoValidacao.getTipoStatus().equals(TipoStatus.NAO_UTILIZADO)) {
-            codigoValidacao.setTipoStatus(TipoStatus.VALIDADO);
+        if (codigoValidacao.isEmpty()) {
+            throw new IllegalArgumentException(Mensagens.MENSAGENS_CODIGO_VALIDACAO_INVALIDO);
         }
-
-        codigoValidacaoRepository.save(codigoValidacao);
-
-        return Mensagens.MENSAGEM_CODIGO_OTP_VALIDO;
     }
 }
+//    @Transactional
+//    public CodigoValidacao executar(ChavePixInput chavePixInput) {
+//        Optional<CodigoValidacao> codigoValidacao = codigoValidacaoRepository
+//                .findByCodigoValidacaoAndContaIdAndTipoChaveAndValorChave(
+//                        chavePixInput.getCodigoValidacao(),
+//                        chavePixInput.getIdConta(),
+//                        chavePixInput.getTipoChave(),
+//                        chavePixInput.getValorChave(),
+//                        TipoStatus.NAO_UTILIZADO);
+//
+//        if (codigoValidacao.isEmpty()) {
+//            throw new IllegalArgumentException(Mensagens.MENSAGENS_CODIGO_VALIDACAO_INVALIDO);
+//        }
+//
+//        return codigoValidacao.get()
+//    }

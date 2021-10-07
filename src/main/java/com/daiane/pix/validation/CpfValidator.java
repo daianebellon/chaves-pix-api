@@ -12,7 +12,9 @@ public class CpfValidator {
     public static boolean validar(String cpf) {
         Objects.requireNonNull(cpf,Mensagens.MENSAGEM_CPF_INVALIDO);
 
-        if (validarCpfInformado(cpf)) {return false;}
+        if (validarCpfInformado(cpf)) {
+            return false;
+        }
 
         try {
             char digitoVerificador10 = validarPrimeiroDigitoVerificador(cpf);
@@ -30,30 +32,24 @@ public class CpfValidator {
     private static char validarSegundoDigitoVerificador(String cpf) {
         int soma = 0;
         int peso = 11;
-        int i;
-        int num;
 
-        for (i = 0; i < 10; i++) {
-            num = ((int) cpf.charAt(i)) - 48;
+        for (var i = 0; i < 10; i++) {
+            var num = ((int) cpf.charAt(i)) - 48;
             soma = soma + (num * peso);
-            peso = peso - 1;
+            peso--;
         }
-
         return validarDigitos(soma);
     }
 
     private static char validarPrimeiroDigitoVerificador(String cpf) {
-        int soma = 0;
-        int peso = 10;
-        int i;
-        int num;
+        var soma = 0;
+        var peso = 10;
 
-        for (i=0; i<9; i++) {
-            num = ((int) cpf.charAt(i)) - 48;
+        for (var i = 0; i < 9; i++) {
+            var num = ((int) cpf.charAt(i)) - 48;
             soma = soma + (num * peso);
-            peso = peso - 1;
+            peso--;
         }
-
         return validarDigitos(soma);
     }
 

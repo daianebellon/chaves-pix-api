@@ -30,27 +30,25 @@ public class CnpjValidator {
     }
 
     private static char validarSegundoDigitoVerificador(String cnpj) {
-        int soma = 0;
-        int peso = 2;
-        int i;
-        int num;
+        var soma = 0;
+        var peso = 2;
 
-        for (i=12; i>=0; i--) {
-            num = ((int) cnpj.charAt(i)) - 48;
+        for (var i = 12; i >= 0; i--) {
+            var num = ((int) cnpj.charAt(i)) - 48;
             soma = soma + (num * peso);
-            peso = peso + 1;
+            peso++;
 
-            if (peso == 10) { peso = 2;}
+            if (peso == 10) {
+                peso = 2;
+            }
         }
 
         return validarDigitos(soma);
     }
 
     private static char validarDigitos(int soma) {
-        int resto;
+        var resto = soma % 11;
         char dig;
-
-        resto = soma % 11;
 
         if (resto == 0 || resto == 1) {
             dig = '0';
@@ -61,16 +59,17 @@ public class CnpjValidator {
     }
 
     private static char validarPrimeiroDigitoVerificador(String cnpj) {
-        int soma = 0;
-        int peso = 2;
-        int i;
-        int num;
+        var soma = 0;
+        var peso = 2;
 
-        for (i=11; i>=0; i--) {
-            num = ((int) cnpj.charAt(i)) - 48;
+        for (var i = 11; i >= 0; i--) {
+            var num = ((int) cnpj.charAt(i)) - 48;
             soma = soma + (num * peso);
-            peso = peso + 1;
-            if (peso == 10) { peso = 2;}
+            peso++;
+
+            if (peso == 10) {
+                peso = 2;
+            }
         }
         return validarDigitos(soma);
     }

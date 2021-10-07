@@ -24,3 +24,5 @@ public class TipoPessoaJpaConverter implements AttributeConverter<TipoPessoa, St
         return TipoPessoa.valueOfLabel(string);
     }
 }
+
+
