@@ -17,8 +17,8 @@ public class CpfValidator {
         }
 
         try {
-            char digitoVerificador10 = validarPrimeiroDigitoVerificador(cpf);
-            char digitoVerificador11 = validarSegundoDigitoVerificador(cpf);
+            var digitoVerificador10 = validarPrimeiroDigitoVerificador(cpf);
+            var digitoVerificador11 = validarSegundoDigitoVerificador(cpf);
             return validarDigitosInformados(cpf, digitoVerificador10, digitoVerificador11);
         } catch (InputMismatchException erro) {
             return false;
@@ -30,8 +30,8 @@ public class CpfValidator {
     }
 
     private static char validarSegundoDigitoVerificador(String cpf) {
-        int soma = 0;
-        int peso = 11;
+        var soma = 0;
+        var peso = 11;
 
         for (var i = 0; i < 10; i++) {
             var num = ((int) cpf.charAt(i)) - 48;
@@ -54,7 +54,7 @@ public class CpfValidator {
     }
 
     private static char validarDigitos(int soma) {
-        int resto = 11 - (soma % 11);
+        var resto = 11 - (soma % 11);
         char dig;
 
         if ((resto == 10) || (resto == 11)) {

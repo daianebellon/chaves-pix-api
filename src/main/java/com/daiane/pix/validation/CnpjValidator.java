@@ -17,8 +17,8 @@ public class CnpjValidator {
         }
 
         try {
-            char digitoVerificador10 = validarPrimeiroDigitoVerificador(cnpj);
-            char digitoVerificador11 = validarSegundoDigitoVerificador(cnpj);
+            var digitoVerificador10 = validarPrimeiroDigitoVerificador(cnpj);
+            var digitoVerificador11 = validarSegundoDigitoVerificador(cnpj);
             return validarSeDigitosCalculadosSaoIguaisDigitosInformados(cnpj, digitoVerificador10, digitoVerificador11);
         } catch (InputMismatchException erro) {
             return false;
