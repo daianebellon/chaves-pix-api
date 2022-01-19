@@ -4,7 +4,6 @@ import com.daiane.pix.gateway.database.entity.chavepix.TipoChave;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -20,4 +19,7 @@ public class ChavePixInput {
 
     @NotNull(message = "Tipo da chave não pode ser nulo")
     private TipoChave tipoChave;
+
+    private Integer codigoValidacao;
+
 }

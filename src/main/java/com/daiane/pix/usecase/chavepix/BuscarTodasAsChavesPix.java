@@ -22,4 +22,6 @@ public class BuscarTodasAsChavesPix {
         var chavePix = chavePixRepository.findAll(paginacao);
         return ChavePixConverter.converterPage(chavePix);
     }
+
 }
+

@@ -16,6 +16,7 @@ public class BuscarChavePixPeloId {
     private final ChavePixRepository chavePixRepository;
     private final IdValidator idValidator;
 
+    //pesquisar pelo valor chave
     @Transactional
     public ChavePixOutput executar(Integer id) {
         idValidator.validar(id);

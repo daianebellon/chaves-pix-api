@@ -29,8 +29,9 @@ public class ChavePixInputValidator {
         var conta = validarConta(chavePixInput);
 
         validarQuantidadeDeChaves(conta);
-        validarSeJaExisteChaveAssociadaAhConta(chavePixInput);
         validarTipoDeChave(chavePixInput, conta);
+        validarSeJaExisteChaveAssociadaAhConta(chavePixInput);
+
     }
 
     private void validarTipoDeChave(ChavePixInput chavePixInput, Conta conta) {
