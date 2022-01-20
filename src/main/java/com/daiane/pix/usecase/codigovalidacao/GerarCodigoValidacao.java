@@ -23,7 +23,7 @@ public class GerarCodigoValidacao {
     public String executar(ChavePixInput chavePixInput) {
         var codigoValidacao = gerarCodigoValidacao(chavePixInput);
         codigoValidacaoRepository.save(codigoValidacao);
-        return "Opa, deu bao";
+        return "Tudo ok!";
     }
 
     private CodigoValidacao gerarCodigoValidacao(ChavePixInput chavePix) {

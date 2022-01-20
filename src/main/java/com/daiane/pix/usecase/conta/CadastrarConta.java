@@ -20,7 +20,6 @@ public class CadastrarConta {
     private final ContaRepository contaRepository;
     private final ContaInputValidator contaInputValidator;
 
-
     @Transactional
     public ContaOutput executar(ContaInput contaInput) {
         contaInputValidator.validar(contaInput);

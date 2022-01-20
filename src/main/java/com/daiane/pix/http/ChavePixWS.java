@@ -35,7 +35,7 @@ public class ChavePixWS {
         return buscarChavePixPeloId.executar(id);
     }
 
-    @GetMapping
+    @GetMapping("/buscartodas")
     public Page<ChavePixOutput> buscarTodos(@RequestParam int pagina, @RequestParam int quantidade) {
         return buscarChavesPix.executar(pagina, quantidade);
     }

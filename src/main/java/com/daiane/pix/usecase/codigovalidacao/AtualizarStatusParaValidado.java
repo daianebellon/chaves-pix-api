@@ -18,5 +18,5 @@ public class AtualizarStatusParaValidado {
         codigoValidacaoRepository.updateStatusCodigoValidacao(codigoValidacaoInput.getCodigoValidacao(),
                 codigoValidacaoInput.getContaId(), codigoValidacaoInput.getTipoChave(), codigoValidacaoInput.getValorChave(), TipoStatus.VALIDADO);
     }
-    //valorchave, codigo validacao, conta, tipo chave
+
 }

@@ -34,8 +34,8 @@ public class CnpjValidator {
         var peso = 2;
 
         for (var i = 12; i >= 0; i--) {
-            var num = ((int) cnpj.charAt(i)) - 48;
-            soma = soma + (num * peso);
+            var numero = ((int) cnpj.charAt(i)) - 48;
+            soma = soma + (numero * peso);
             peso++;
 
             if (peso == 10) {
@@ -63,8 +63,8 @@ public class CnpjValidator {
         var peso = 2;
 
         for (var i = 11; i >= 0; i--) {
-            var num = ((int) cnpj.charAt(i)) - 48;
-            soma = soma + (num * peso);
+            var numero = ((int) cnpj.charAt(i)) - 48;
+            soma = soma + (numero * peso);
             peso++;
 
             if (peso == 10) {

@@ -32,19 +32,3 @@ public class ValidarCodigoValidacao {
         }
     }
 }
-//    @Transactional
-//    public CodigoValidacao executar(ChavePixInput chavePixInput) {
-//        Optional<CodigoValidacao> codigoValidacao = codigoValidacaoRepository
-//                .findByCodigoValidacaoAndContaIdAndTipoChaveAndValorChave(
-//                        chavePixInput.getCodigoValidacao(),
-//                        chavePixInput.getIdConta(),
-//                        chavePixInput.getTipoChave(),
-//                        chavePixInput.getValorChave(),
-//                        TipoStatus.NAO_UTILIZADO);
-//
-//        if (codigoValidacao.isEmpty()) {
-//            throw new IllegalArgumentException(Mensagens.MENSAGENS_CODIGO_VALIDACAO_INVALIDO);
-//        }
-//
-//        return codigoValidacao.get()
-//    }

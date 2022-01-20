@@ -7,13 +7,8 @@ import com.daiane.pix.gateway.database.entity.conta.Conta;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ChavePixConverter {
